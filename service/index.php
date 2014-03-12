@@ -1,5 +1,5 @@
 <?php
-require_once './includes/backend_initial.php';
+require_once '../includes/backend_initial.php';
 
 $action = $_REQUEST['action'];
 $id = $_REQUEST['id'];

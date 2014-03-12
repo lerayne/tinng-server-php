@@ -1,5 +1,5 @@
 <?php
-require_once './includes/backend_initial.php';
+require_once '../includes/backend_initial.php';
 
 $suggest = $_REQUEST['suggest'];
 $subject = $_REQUEST['subject'];

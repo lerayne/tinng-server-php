@@ -1,7 +1,7 @@
 <?php
 //sleep(1); // в целях отладки
 
-require_once '../includes/backend_initial2.php';
+require_once '../includes/backend_initial.php';
 require_once '../includes/funcs.php';
 require_once '../classes/Feed.php';
 
@@ -218,7 +218,13 @@ function parse_request($request) {
 	return $result;
 }
 
-$GLOBALS['_RESULT'] = parse_request($_REQUEST);
+$GLOBALS['debug']['cookies'] = $_COOKIE;
 
-if (count($GLOBALS['debug'])) print_r($GLOBALS['debug']);
+
+header('Access-Control-Allow-Origin:*');
+
+$result = array('data' => parse_request($_REQUEST));
+if (count($GLOBALS['debug'])) $result['debug'] = $GLOBALS['debug'];
+
+echo json_encode($result);
 ?>

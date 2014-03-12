@@ -2,16 +2,15 @@
 /* Подключаемый файл, который входит в бекенд для XHR */
 
 $env['rootdir'] = '../';
-$env['appdir'] = '../apps/web.main/';
-$env['includes'] = './';
+$env['includes'] = '../';
 
-require_once $env['includes'].'includes/config.php'; //конфигурационный файл
-require_once $env['rootdir'].'libraries/toolkit.php'; // типа фреймворк)
+require_once $env['rootdir'].'config.php'; //конфигурационный файл
+require_once $env['rootdir'].'lib/toolkit.php'; // типа фреймворк)
 
-require_once $env['rootdir'].'libraries/Everything.php'; // типа фреймворк)
+require_once $env['rootdir'].'lib/Everything.php'; // типа фреймворк)
 $e = new Everything();
 
-require_once $env['rootdir'].'libraries/DbSimple/Generic.php'; // либа для работы с базой
+require_once $env['rootdir'].'lib/DbSimple/Generic.php'; // либа для работы с базой
 
 require_once $env['includes'].'classes/User.php';
 
@@ -33,8 +32,8 @@ $raw_user = $db->selectRow(
 		AND login = ?
 		AND approved = 1
 	'
-    , $_COOKIE['pass']
-    , $_COOKIE['login']
+    , $_REQUEST['user']['pass']
+    , $_REQUEST['user']['login']
 );
 
 // todo заглушка аутентификации
@@ -58,9 +57,14 @@ function databaseErrorHandler($message, $info) {
 list($xhr_id, $xhr_method) = explode('-', $_GET['JsHttpRequest']);
 $sessid = $_GET['PHPSESSID'];
 
-require_once $env['rootdir'].'libraries/JsHttpRequest.php'; // либа для аякса
+//require_once $env['rootdir'].'lib/JsHttpRequest.php'; // либа для аякса
 
 if (!ini_get('zlib.output_compression')) ob_start('ob_gzhandler'); // выводим результат в gzip
 
-$req =& new JsHttpRequest($e->locale); //"utf-8"
+//$req =& new JsHttpRequest($e->locale); //"utf-8"
+
+
+function is_assoc($array) {
+	return (bool)count(array_filter(array_keys($array), 'is_string'));
+}
 ?>
