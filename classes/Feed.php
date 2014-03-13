@@ -781,6 +781,9 @@ class Feed {
 		}
 
 		// фильтрация по полям:
+		if ($users['fields']) {
+			$users['fields'] = explode(',', str_replace(' ', '', $users['fields']));
+		}
 
 		// сборка полей
 		$fields_map = Array(

@@ -374,7 +374,12 @@ switch ($action):
 
 endswitch;
 
-$GLOBALS['_RESULT'] = $result;
 
-if (count($GLOBALS['debug'])) print_r($GLOBALS['debug']);
+
+header('Access-Control-Allow-Origin:*');
+
+$result = array('data' => $result);
+if (count($GLOBALS['debug'])) $result['debug'] = $GLOBALS['debug'];
+
+echo json_encode($result);
 ?>

@@ -108,5 +108,10 @@ endswitch;
 
 //sleep(2);
 
-$GLOBALS['_RESULT'] = $result;
+header('Access-Control-Allow-Origin:*');
+
+$result = array('data' => $result);
+if (count($GLOBALS['debug'])) $result['debug'] = $GLOBALS['debug'];
+
+echo json_encode($result);
 ?>

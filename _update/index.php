@@ -218,7 +218,7 @@ function parse_request($request) {
 	return $result;
 }
 
-$GLOBALS['debug']['cookies'] = $_COOKIE;
+//$GLOBALS['debug']['cookies'] = $_COOKIE;
 
 
 header('Access-Control-Allow-Origin:*');

@@ -47,7 +47,7 @@ function process_data($strip, $delete_email_after, $data) {
 
 			if ($val['deleted'] || $val['noaccess']) {
 
-				$GLOBALS['debug']['deleted'][] = ($val['deleted'] == true);
+				//$GLOBALS['debug']['deleted'][] = ($val['deleted'] == true);
 
 				// убираем из сообщений об удаленных рядах всю лишнюю инфу
 				$processed[$key] = Array (
