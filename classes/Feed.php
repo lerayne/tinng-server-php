@@ -199,7 +199,7 @@ class Feed {
 		$tags = $db->select($query
 
 			, $tag_array
-			, ($meta['updates_since'] ? $meta['updates_since'] : DBSIMPLE_SKIP)
+			, /*($meta['updates_since'] ? $meta['updates_since'] : */ DBSIMPLE_SKIP /*)*/ // todo - теги почему-то выбираются только при первом запросе
 		);
 
 		foreach ($tags as $tag) {
