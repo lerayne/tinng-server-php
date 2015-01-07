@@ -27,12 +27,15 @@ $db->setIdentPrefix($safecfg['db_prefix'].'_');
 
 // !! todo простой логин. потом сделать более секьюрный
 $raw_user = $db->selectRow(
-    'SELECT * FROM ?_users WHERE
-		hash = ?
-		AND login = ?
+    'SELECT * FROM ?_users
+		WHERE (hash = ? OR hash = ?)
+		AND (login = ? OR email = ?)
 		AND approved = 1
 	'
+	// todo - close the hole with direct hash passing and use of md5
     , $_REQUEST['user']['pass']
+    , md5($_REQUEST['user']['password'])
+    , $_REQUEST['user']['login']
     , $_REQUEST['user']['login']
 );
 

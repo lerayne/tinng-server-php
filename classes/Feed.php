@@ -14,9 +14,9 @@ class Feed {
 	}
 
 
-	///////
-	// темы
-	///////
+	////////////
+	// FUNC темы
+	////////////
 
 	function get_topics($topics, &$meta = Array()) {
 		global $cfg, $db, $user;
@@ -224,10 +224,15 @@ class Feed {
 
 
 
-	////////
-	// posts
-	////////
+	/////////////
+	// FUNC posts
+	/////////////
 
+	/**
+	 * @param $posts
+	 * @param array $meta
+	 * @return mixed
+	 */
 	function get_posts($posts, &$meta = Array()) {
 		global $cfg, $db, $user;
 
@@ -570,9 +575,11 @@ class Feed {
 
 	}
 
-	///////////////
-	// single topic
-	///////////////
+
+
+	////////////////////
+	// FUNC single topic
+	////////////////////
 
 	function get_topic($topic, &$meta = Array()) {
 		global $db, $user;
@@ -734,7 +741,7 @@ class Feed {
 
 
 	///////////////
-	// users data
+	// FUNC users data
 	///////////////
 
 	function get_users($users, &$meta = Array()) {
@@ -855,8 +862,59 @@ class Feed {
 	}
 
 
+	//////////////
+	// FUNC single user
+	//////////////
+
+
+	function get_user($user, &$meta=Array()){
+		global $db;
+
+		$user = load_defaults($user, $user_defaults = Array(
+			'login' => '',
+			'password' => ''
+		));
+
+		if ($meta['response_given']){
+			return null;
+		}
+
+		$userData = $db->selectRow("
+			SELECT
+				usr.id,
+				usr.login,
+				usr.display_name,
+				usr.email,
+				usr.reg_date,
+				usr.last_read,
+				usr.status,
+				avatar.param_value as avatar
+			FROM ?_users usr
+			LEFT JOIN ?_user_settings avatar ON usr.id = avatar.user_id AND param_key = 'avatar'
+			WHERE
+				(usr.login = ? OR usr.email = ?) AND usr.hash = ? AND usr.approved = 1
+			",
+			$user['login'],
+			$user['login'],
+			md5($user['password'])
+		);
+
+		if (!sizeof($userData)) {
+			$userData = 'none';
+		} else {
+			$userData = process_data(0, true, $userData);
+		}
+
+		$meta['response_given'] = true;
+
+		//$GLOBALS['debug']['userData'] = $userData;
+
+		return $userData;
+	}
+
+
 	///////////////
-	// tags
+	// FUNC tags
 	///////////////
 
 	function get_tags ($tags, &$meta = Array()) {
@@ -899,7 +957,7 @@ class Feed {
 
 
 	///////////////
-	// dialogues
+	// FUNC dialogues
 	///////////////
 
 	function get_dialogues ($dialogues, &$meta = Array()){
@@ -988,4 +1046,8 @@ class Feed {
 
 		return $result;
 	}
+
+
+
+
 }
