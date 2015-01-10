@@ -220,11 +220,6 @@ function parse_request($request) {
 
 //$GLOBALS['debug']['cookies'] = $_COOKIE;
 
-
-header('Access-Control-Allow-Origin:*');
-
 $result = array('data' => parse_request($_REQUEST));
-if (count($GLOBALS['debug'])) $result['debug'] = $GLOBALS['debug'];
 
-echo json_encode($result);
-?>
+require_once '../includes/backend_final.php';

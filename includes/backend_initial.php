@@ -1,6 +1,8 @@
 <?php
 /* Подключаемый файл, который входит в бекенд для XHR */
 
+ob_start();
+
 $env['rootdir'] = '../';
 $env['includes'] = '../';
 
@@ -61,8 +63,6 @@ list($xhr_id, $xhr_method) = explode('-', $_GET['JsHttpRequest']);
 $sessid = $_GET['PHPSESSID'];
 
 //require_once $env['rootdir'].'lib/JsHttpRequest.php'; // либа для аякса
-
-if (!ini_get('zlib.output_compression')) ob_start('ob_gzhandler'); // выводим результат в gzip
 
 //$req =& new JsHttpRequest($e->locale); //"utf-8"
 

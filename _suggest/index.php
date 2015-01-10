@@ -106,12 +106,5 @@ switch ($suggest):
 
 endswitch;
 
-//sleep(2);
-
-header('Access-Control-Allow-Origin:*');
-
-$result = array('data' => $result);
-if (count($GLOBALS['debug'])) $result['debug'] = $GLOBALS['debug'];
-
-echo json_encode($result);
+require_once '../includes/backend_final.php';
 ?>
