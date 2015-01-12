@@ -13,7 +13,7 @@ if (count($GLOBALS['debug'])) $result['debug'] = $GLOBALS['debug'];
 $php_message = ob_get_contents();
 ob_clean();
 
-if (sizeof($php_message)) {
+if (strlen($php_message)) {
 	$result['php_message'] = $php_message;
 }
 
