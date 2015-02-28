@@ -35,7 +35,7 @@ $raw_user = $db->selectRow(
 		AND approved = 1
 	'
 	// todo - close the hole with direct hash passing and use of md5
-    , $_REQUEST['user']['pass']
+    , $_REQUEST['user']['hash']
     , md5($_REQUEST['user']['password'])
     , $_REQUEST['user']['login']
     , $_REQUEST['user']['login']

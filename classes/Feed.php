@@ -892,11 +892,12 @@ class Feed {
 			FROM ?_users usr
 			LEFT JOIN ?_user_settings avatar ON usr.id = avatar.user_id AND param_key = 'avatar'
 			WHERE
-				(usr.login = ? OR usr.email = ?) AND usr.hash = ? AND usr.approved = 1
+				(usr.login = ? OR usr.email = ?) AND (usr.hash = ? OR usr.hash = ?) AND usr.approved = 1
 			",
 			$user['login'],
 			$user['login'],
-			md5($user['password'])
+			md5($user['password']),
+			$user['hash']
 		);
 
 		if (!sizeof($userData)) {
