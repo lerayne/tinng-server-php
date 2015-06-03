@@ -7,6 +7,7 @@
  */
 
 header('Access-Control-Allow-Origin:*'); // отдавать результат любому домену
+header('Content-type:text/plain; charset=UTF-8'); // отдавать результат любому домену
 
 if (count($GLOBALS['debug'])) $result['debug'] = $GLOBALS['debug'];
 
