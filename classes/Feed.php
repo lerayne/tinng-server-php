@@ -574,7 +574,12 @@ class Feed {
 		// todo - посты возвращаются не массивом, а объектом, исправить
 		$GLOBALS['debug']['posts'] = $output_posts;
 
-		return $output_posts;
+		// удаление индексов
+		foreach ($output_posts as $post) {
+			$plain_posts[] = $post;
+		}
+
+		return $plain_posts;
 
 	}
 
