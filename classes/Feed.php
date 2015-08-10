@@ -571,9 +571,6 @@ class Feed {
 		$meta['slice_start'] = $slice_start;
 		if ($new_updates_since) $meta['updates_since'] = $new_updates_since;
 
-		// todo - посты возвращаются не массивом, а объектом, исправить
-		$GLOBALS['debug']['posts'] = $output_posts;
-
 		// удаление индексов
 		foreach ($output_posts as $post) {
 			$plain_posts[] = $post;
