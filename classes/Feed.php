@@ -27,6 +27,7 @@ class Feed {
 			'sort_direction' => 'desc',
 			'filter' => ''
 		));
+		
 
 		$meta = load_defaults($meta, $meta_defaults = Array(
 			'updates_since' => '0' // работает как false, а в SQL-запросах по дате - как 0
@@ -57,7 +58,7 @@ class Feed {
 			LEFT JOIN ?_private_topics elses_access FORCE INDEX FOR JOIN (pvt_all)
 				ON elses_access.message = msg.id AND elses_access.user != ?d AND elses_access.level IS NOT NULL
 
-			{$tags_joins}
+			/*{$tags_joins}*/
 			/*{JOIN ?_tagmap map ON map.message = msg.id AND map.tag IN(?a)}*/
 
 			WHERE msg.topic_id = 0
@@ -65,10 +66,10 @@ class Feed {
 				AND (
 					(my_access.level IS NULL AND elses_access.level IS NULL) /* тема публична */
 					OR (my_access.level IS NOT NULL) /* тема приватна, но у меня есть доступ */
-					{OR (my_access.level IS NULL AND elses_access.level IS NOT NULL AND (my_access.updated > ? }{ OR elses_access.updated > ?))}
+					/*{OR (my_access.level IS NULL AND elses_access.level IS NOT NULL AND (my_access.updated > ? }{ OR elses_access.updated > ?))}*/
 				)
-				{AND (msg.updated > ? }{ OR mupd.updated > ?)}
-				{AND msg.deleted IS NULL AND 1 = ?d}
+				/*{AND (msg.updated > ? }{ OR mupd.updated > ?)}
+				{AND msg.deleted IS NULL AND 1 = ?d}*/
 
 				/* get_topics есть ли что-нибудь на вывод */
 			"

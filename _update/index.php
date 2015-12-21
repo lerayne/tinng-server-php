@@ -1,6 +1,9 @@
 <?php
 //sleep(1); // в целях отладки
 
+$GLOBALS['debug'] = Array();
+
+
 require_once '../includes/backend_initial.php';
 require_once '../includes/funcs.php';
 require_once '../classes/Feed.php';
@@ -8,7 +11,6 @@ require_once '../classes/Feed.php';
 $result['xhr'] = $xhr_id;
 //$result['sessid'] = $sessid;
 
-$GLOBALS['debug'] = Array();
 
 ///////////////////////
 // разбираем что пришло
@@ -206,6 +208,9 @@ function parse_request($request) {
 
 					// тут в конце страшная магия - передача параметра в функцию по ссылке
 					$feed_data =  $feed->$method_name($params, $meta[$subscriberId][$feedName]);
+
+					//$GLOBALS['debug']['feed '.$feedName] = $feed_data;
+
 					if (count($feed_data)) $result['feeds'][$subscriberId][$feedName] = $feed_data;
 				}
 			}

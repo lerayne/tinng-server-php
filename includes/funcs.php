@@ -63,7 +63,7 @@ function process_data($strip, $delete_email_after, $data) {
 			// Если работаем не с отчетом об удалении
 
 			if ($val['avatar'] == 'gravatar') {
-				$val['avatar'] = 'http://www.gravatar.com/avatar/' . md5(strtolower($val['email'])) . '?s=50';
+				$val['avatar'] = 'http://www.gravatar.com/avatar/' . md5(strtolower($val['email'])) . '?s=150';
 			}
 
 			if ($val['display_name'] == null && $val['login']) $val['display_name'] = $val['login'];

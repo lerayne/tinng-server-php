@@ -249,7 +249,7 @@ switch ($action):
 
 		// todo - повторяю уже третий раз - объединить!
 		if ($added_user['avatar'] == 'gravatar') {
-			$added_user['avatar'] = 'http://www.gravatar.com/avatar/' . md5(strtolower($added_user['email'])) . '?s=50';
+			$added_user['avatar'] = 'http://www.gravatar.com/avatar/' . md5(strtolower($added_user['email'])) . '?s=150';
 		}
 
 		if ($added_user['display_name'] == null) $added_user['display_name'] = $added_user['login'];
